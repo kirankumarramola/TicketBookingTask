@@ -1,7 +1,6 @@
 const theatre = require('../models/TheatreSchema');
 const mongoose = require('../loaders/mongoose');
 
-// const {theatreModel, theatreSchema} = require("../models/TheatreSchema");
 async function insertDetails(data){
     console.log(data);
     try{
@@ -43,14 +42,13 @@ async function insertDetails(data){
         //         }
         //     }
         // };
-        // let theatre1 = new model(data);
-        // theatre1.save();
         var movie1 = await theatre.collection.insertOne(data);
         console.log("data added");
         return {msg : "movie details added"};
     }
     catch(err){
         console.log(err);
+        return {msg : "error details properly as per theatre schema"}
     }
 };
 

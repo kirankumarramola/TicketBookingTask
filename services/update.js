@@ -1,14 +1,26 @@
+const theatre = require('../models/TheatreSchema');
+const {mail} = require("./../lib/mail");
+
 async function updateTickets(data){
-    const theatre = require('../models/TheatreSchema');
+    const userData = require('./user/login');
     const result = await theatre.findOne({$and:[{theatreName : data.theatreName},{movieName: data.movieName}]},{_id:0,[data.ticket]:1});
     console.log(result);
-    //console.log(data);
+    // console.log(userData);
     const str = result.toString().slice(26,35);
     console.log(str);
     if(str=='available'){
-        const upd = await theatre.updateOne({$and:[{theatreName : data.theatreName},{movieName: data.movieName},{[data.ticket]:'available'}]},{[data.ticket]:'reserved'});
+        try{
+            const upd = await theatre.updateOne({$and:[{theatreName : data.theatreName},{movieName: data.movieName},{[data.ticket]:'available'}]},{[data.ticket]:'reserved'});
+        const ticketDetails = data.ticket.toString().split(".");
+        const msg = `Hi ${userData.name.toLocaleUpperCase()}\n Your ticket for ${data.movieName} in ${data.theatreName} theatre has been booked\n Ticket Details \n ShowTime : ${ticketDetails[1]}\n Seat Number : ${ticketDetails[2]}`;
+        const mailTo = await mail.sendMail(userData.email,msg);
         console.log("ticket booked");
         return {msg : "seat booked"};
+        }
+        catch(err){
+            console.log(err);
+            return {msg : "Login before booking tickets"}
+        }
     }
     else {
         console.log("ticket already booked");

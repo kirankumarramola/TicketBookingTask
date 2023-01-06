@@ -1,6 +1,7 @@
+const theatre = require('../models/TheatreSchema');
+
 async function searchDetails(data){
-    const theatre = require('../models/TheatreSchema');
-     const result = await theatre.find(data,{_id:0});
+    const result = await theatre.find(data,{_id:0});
     console.log(result);
     return result;
 }
