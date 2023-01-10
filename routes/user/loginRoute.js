@@ -2,7 +2,7 @@ const routes = (module.exports = require("express")());
 const {login} = require("../../services/user/login");
 const authorisation = require('./../../loaders/jwt');
 
-routes.get("/login",async (req,res)=>{
+routes.get("/",async (req,res)=>{
     try{
         let data = await login.userLogin(req.query);
         // console.log(data);

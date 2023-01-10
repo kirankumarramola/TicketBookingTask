@@ -1,7 +1,7 @@
 const routes = (module.exports = require("express")());
 const {update} = require("../services/update");
 
-routes.get("/update",async (req,res)=>{
+routes.get("/",async (req,res)=>{
     try{
         let data = await update.updateTickets(req.query);
         //console.log(data);

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-// const {getConnection} = require("../logs/getConnection");
-// const connect = await getConnection.con();
-// const url = connect.url;
-const url = 'mongodb+srv://kirankumarramola:KiranKumar%4006@cluster0.apvyog4.mongodb.net/TicketBookingSystem';
+// const {con} = require("../logs/getConnection");
+//  const connect = con.getConnection();
+//  const url = connect.url;
+const CONFIG = require('./../loaders/dotenv');
+const url = CONFIG.DB_URL;
 const db = mongoose.connection;
-// console.log(connect.url,"-------")
 mongoose.set('strictQuery',true);
 mongoose.connect(url);
 

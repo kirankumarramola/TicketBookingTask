@@ -1,10 +1,9 @@
 const routes = (module.exports = require("express")());
-const {find} = require("../services/find");
-
+const {avail} = require("../services/available");
 
 routes.get("/",async (req,res)=>{
     try{
-        let data = await find.findDetails();
+        let data = await avail.showAvailable(req.query);
         res.status(200).send(data);
     }
     catch(err){

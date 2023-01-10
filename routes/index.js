@@ -12,6 +12,7 @@ app.use("/find", require("./findRoute"));
 app.use("/insert",require("./insertRoute"));
 app.use("/search",require("./searchRoute"));
 app.use("/update",require("./updateRoute"));
+app.use("/available",require("./available"));
 app.use("/register",require("./user/registerRoute"));
 app.use("/login",require("./user/loginRoute"));
 app.use("/show",require("./seatsRoute"));

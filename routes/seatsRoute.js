@@ -2,7 +2,7 @@ const routes = (module.exports = require("express")());
 const {seats} = require("./../services/showSeats");
 const authorisation = require('./../loaders/jwt');
 
-routes.get("/show",async (req,res)=>{
+routes.get("/",async (req,res)=>{
     try{
         let data = await seats.showTickets(req.query);
         //console.log(data);

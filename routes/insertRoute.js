@@ -4,7 +4,7 @@ const bodyparser = require('body-parser');
 
 routes.use(bodyparser.json());
 
-routes.post("/insert",async (req,res)=>{
+routes.post("/",async (req,res)=>{
     try{
         console.log(req.body);
         let data = await ticketsData.insertDetails(req.body);
